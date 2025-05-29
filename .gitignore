@@ -1,0 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env/
+.venv/
+venv/
+ENV/
+env/
+
+# PyCharm project files
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Test and coverage files
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# PyInstaller
+*.manifest
+*.spec
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Profiling
+.prof
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+audio.wav
+
+# Local config or secrets
+*.env
+*.local
+*.sqlite3
+db.sqlite3
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
