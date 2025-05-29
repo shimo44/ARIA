@@ -7,7 +7,7 @@ and adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [1.1.0] - 2025-05-24
+## [1.1.0] - 2025-05-28
 
 ### Added
 - 🎉 Initial launch of **Aria Desktop Assistant**
