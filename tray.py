@@ -62,9 +62,7 @@ def create_icon():
     return aria_icon
 
 if __name__ == "__main__":
-    while True:
-        try:
-            create_icon().run()
-        except Exception as e:
-            print(f"[TRAY ERROR] {e}")
-            time.sleep(1)
+    try:
+        create_icon().run()
+    except Exception as e:
+        print(f"[TRAY ERROR] {e}")

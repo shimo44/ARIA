@@ -1,6 +1,24 @@
-## Changelog
+## Changelog 
 
-### 1.3.0 - Tray Icon Resilience + Launcher Stability (Upcoming)
+### 1.3.1 - Recording Logic + Debug Engine Integration (2025-05-29)
+- **Minimum Recording Safeguards**:
+  - Enforced minimum recording duration (`1.8s`) to prevent Whisper from transcribing ambient or false-positive clips.
+  - Skips files with audio length `0 bytes` and flags them as noise.
+- **Signal Clarity Tracking**:
+  - Added RMS (Root Mean Square) amplitude tracking per recording session.
+  - Logged average signal strength and frame-level amplitude.
+- **Recording Duration Timing**:
+  - Total session time tracked and logged.
+  - Debug flag `DEBUG_TIMING` toggles runtime visibility of timing diagnostics.
+- **Enhanced GPT Prompt Trail**:
+  - Full context of user history + recent user prompt now shown in debug logs before GPT response.
+- **Configurable Debug Modes**:
+  - Introduced `DEBUG_MODE` and `DEBUG_TIMING` via `.env` → centralized in `utils/config.py`.
+- **Audio Troubleshooting Improvements**:
+  - Better detection and logging of “dead air” and over-aggressive cuts from `webrtcvad`.
+  - Temporary workaround: extended post-trigger padding and fallback Whisper handling for edge cases.
+
+### 1.3.0 - Tray Icon Resilience + Launcher Stability
 - Enhanced `tray.py` with safe process relaunching.
 - Improved logging and crash recovery mechanisms.
 - Unified stop/start control via tray menu.
