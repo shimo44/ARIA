@@ -1,0 +1,14 @@
+openai
+elevenlabs
+whisper
+torch
+pyaudio
+webrtcvad
+soundfile
+pydub
+plyer
+python-dotenv
+colorama
+dotenv
+pvporcupine
+pystray

@@ -30,7 +30,7 @@ def notify(title, message):
 def listen_for_wake_word():
     porcupine = pvporcupine.create(
         access_key=ACCESS_KEY,
-        keywords=["aria"]
+        keywords=["computer"]
     )
 
     pa = pyaudio.PyAudio()

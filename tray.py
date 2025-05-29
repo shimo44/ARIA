@@ -4,6 +4,7 @@ import subprocess
 import os
 import sys
 from plyer import notification
+import time
 
 ICON_PATH = os.path.join(os.path.dirname(__file__), "assets", "icon.jpg")
 WAKE_SCRIPT = os.path.join(os.path.dirname(__file__), "wake_listener.py")
@@ -61,4 +62,9 @@ def create_icon():
     return aria_icon
 
 if __name__ == "__main__":
-    create_icon().run()
+    while True:
+        try:
+            create_icon().run()
+        except Exception as e:
+            print(f"[TRAY ERROR] {e}")
+            time.sleep(1)
