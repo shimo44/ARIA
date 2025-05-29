@@ -25,9 +25,10 @@ import datetime
 # --- Whisper (Speech-to-Text) ---
 try:
     import whisper
+    model = whisper.load_model("base")
 except Exception as e:
     print("\u274c Failed to load Whisper:", e)
-    sys.exit(1)
+    model = None
 
 # --- Internal Modules ---
 from utils.logger import (
@@ -59,7 +60,9 @@ def record_audio(filename="audio.wav", duration=5, samplerate=44100):
         return None
 
 def transcribe_audio(filename):
-    model = whisper.load_model("base")
+    if model is None:
+        print("\u274c Whisper model not loaded. Cannot transcribe.")
+        return ""
     result = model.transcribe(filename)
     print(f"Transcription result: {result['text']}")
     return result["text"]
@@ -126,7 +129,7 @@ def main():
     print(f"User said: {prompt}")
 
     if not prompt.strip():
-        print("❌ No speech detected. Skipping response.")
+        print("\u274c No speech detected. Skipping response.")
         return
 
     command_response = handle_commands(prompt)
