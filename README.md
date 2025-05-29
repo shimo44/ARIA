@@ -1,4 +1,4 @@
-# ARIA.EXE v1.1.0 – Desktop AI Assistant
+# ARIA.EXE – Desktop AI Assistant
 
 **ARIA** is a local, privacy-focused AI voice assistant powered by Whisper, GPT-4, and ElevenLabs. It listens for wake words, responds naturally, remembers what you say, and lives quietly in your system tray.
 

@@ -2,9 +2,9 @@ import pvporcupine
 import pyaudio
 import struct
 import os
+import time
 from dotenv import load_dotenv
-from aria import main
-from aria import speak_text
+from aria import main, speak_text
 
 # Optional notification support
 try:
@@ -12,10 +12,10 @@ try:
 except ImportError:
     notification = None
 
-# Load environment variables from .env file
+# === Load Environment Variables ===
 load_dotenv()
 ACCESS_KEY = os.getenv("ACCESS_KEY")
-
+DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 def notify(title, message):
     if notification:
@@ -26,11 +26,14 @@ def notify(title, message):
             timeout=3
         )
 
+def debug_log(label, msg):
+    if DEBUG_MODE:
+        print(f"[DEBUG] {label}: {msg}")
 
 def listen_for_wake_word():
     porcupine = pvporcupine.create(
         access_key=ACCESS_KEY,
-        keywords=["computer"]
+        keywords=["jarvis"]  # Replace with "aria" if using a trained keyword
     )
 
     pa = pyaudio.PyAudio()
@@ -51,12 +54,17 @@ def listen_for_wake_word():
             pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
 
             if porcupine.process(pcm) >= 0:
+                debug_log("Wake word", "Detected")
                 print("Wake word detected!")
+
                 try:
                     speak_text("Hi, I’m listening.")
+                    start = time.time()
                     main()
+                    debug_log("Main completed in", f"{time.time() - start:.2f}s")
                 except Exception as e:
                     print("Error in main():", e)
+                    debug_log("Exception", str(e))
                 finally:
                     print("Main() completed. Returning to listening mode...")
                     notify("Listening Resumed", "Aria is listening again.")
@@ -69,7 +77,6 @@ def listen_for_wake_word():
         stream.close()
         pa.terminate()
         porcupine.delete()
-
 
 if __name__ == "__main__":
     listen_for_wake_word()
