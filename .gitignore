@@ -64,3 +64,6 @@ build/
 dist/
 *.egg-info/
 .eggs/
+
+#Aria artifacts
+aria_memory.db

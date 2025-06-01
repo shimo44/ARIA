@@ -1,14 +1,12 @@
-openai
-elevenlabs
-whisper
-torch
-pyaudio
-webrtcvad
-soundfile
-pydub
-plyer
-python-dotenv
-colorama
-dotenv
-pvporcupine
-pystray
+openai>=1.0.0
+whisper @ git+https://github.com/openai/whisper.git
+sounddevice>=0.4.6
+soundfile>=0.12.1
+pydub>=0.25.1
+python-dotenv>=1.0.0
+requests>=2.31.0
+elevenlabs>=0.2.27
+plyer>=2.1.0
+pystray>=0.19.5
+Pillow>=10.0.0
+tk

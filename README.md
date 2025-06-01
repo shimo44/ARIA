@@ -1,106 +1,74 @@
-# ARIA.EXE – Desktop AI Assistant
+<p align="left">
+  <img src="./assets/icon.jpg" alt="Aria Icon" width="100" style="float: left; margin-right: 15px;"/>
+</p>
 
-**ARIA** is a local, privacy-focused AI voice assistant powered by Whisper, GPT-4, and ElevenLabs. It listens for wake words, responds naturally, remembers what you say, and lives quietly in your system tray.
+# Aria Assistant
 
----
-
-## 🚀 Features
-
-- ✅ Wake-word activated voice assistant (“Hey Aria”)
-- 🎤 Whisper for accurate speech-to-text
-- 🧠 GPT-4 via OpenAI API for intelligent responses
-- 🔊 ElevenLabs for realistic voice replies
-- 📌 Tray icon for one-click control (start/stop/quit)
-- 💾 Persistent memory with SQLite
-- 🔔 Desktop notifications and tooltips
+Aria is a local desktop AI assistant powered by OpenAI, Whisper, and ElevenLabs. It can listen to your voice, respond naturally, and now offers GUI and tray integration for seamless control.
 
 ---
 
-## 📂 Folder Structure
-
-```
-aria/
-│
-├── aria.py                  # Main assistant logic with memory, commands
-├── wake_listener.py         # Wake word detection (Porcupine)
-├── tray.py                  # Tray icon to control Aria
-│
-├── utils/
-│   └── logger.py            # Chat logging + SQLite memory
-│
-├── assets/
-│   └── icon.png             # Icon for tray (64x64 PNG)
-│
-├── audio/                   # Optional audio recordings
-├── config/                  # Reserved for .env/config
-└── logs/
-    ├── chatlog.txt          # Raw text memory log
-    └── memory.db            # SQLite persistent memory
-```
+## 🌟 Features
+- Wake word detection via `wake_listener.py`
+- Voice-to-text transcription with Whisper
+- ChatGPT-based natural language replies
+- Text-to-speech using ElevenLabs
+- GUI with command buttons and type-to-ask
+- System tray menu for minimal operation
 
 ---
 
-## 🔐 Required API Keys
+## 🔄 Version History
 
-Set these in your environment or securely load them:
+### [1.2.3 - Modular Expansion](./CHANGELOG.md)
+- GUI and tray split into `aria_gui.py` and `tray.py`
+- Text entry unlocks after Aria speaks
+- Default tray-based launcher from `aria.py`
 
-- `OPENAI_API_KEY` – for ChatGPT/GPT-4
-- `ELEVENLABS_API_KEY` – for voice synthesis
-- `VOICE_ID` – ElevenLabs voice profile ID
-- `ACCESS_KEY` – Picovoice Porcupine wake word key
+### [1.2.2.5 - VAD Removal](./archive/aria-1.2.2.5.py)
+- Voice Activity Detection removed
+- Audio input consolidated to main logic
+- Refactored for upcoming modular split
+
+### [1.1.0 - Stable Build](./archive/aria-1.1.0.py)
+- Working Whisper/STT and ElevenLabs integration
+- Console-based loop with wake control
 
 ---
 
-## 🛠 Installation
+## 🚧 How to Run
 
-Install required packages:
-
-```bash
-pip install openai whisper elevenlabs pvporcupine pyaudio sounddevice soundfile pydub simpleaudio pystray pillow plyer python-dotenv
-```
-
-Run the tray assistant:
-
-```bash
-python tray.py
-```
-
-Start manually without tray:
-
+### ▶️ Start in Tray Mode
 ```bash
 python aria.py
 ```
 
----
+### 💬 Open the GUI
+```bash
+python aria_gui.py
+```
 
-## 💡 What You Can Ask Aria
-
-Aria uses GPT-4 to generate intelligent, conversational responses to spoken prompts.
-
-### 🔍 Examples:
-- "What is the capital of France?"
-- "Tell me a short story about a robot."
-- "Summarize the plot of The Matrix."
-- "How do I start a business?"
-- "Explain quantum physics in simple terms."
-- "What’s the difference between Python and JavaScript?"
-- "Give me a productivity tip."
-- "Recite a motivational quote."
-- "Tell me a joke."
-- "Define resilience."
-
-### ✅ Special Voice Commands:
-- "Clear memory" → wipes chatlog and memory database
-- "What do you remember" → recalls last 5 chat entries
-- "Goodbye" → exits Aria assistant cleanly
-
-### ⛔ Current Limitations:
-- No live data (weather, stocks, news, time)
-- No wake word training (uses preset keyword)
-- No local file system access or automation (yet)
+### 🔕 Run Wake Listener Only
+```bash
+python wake_listener.py
+```
 
 ---
 
-## 📜 License
+## ⚙️ Development Notes
+- Python 3.9+ recommended
+- Requires `ffmpeg` in system path
+- .env file with API keys: `OPENAI_API_KEY`, `ELEVENLABS_API_KEY`, `VOICE_ID`, `ACCESS_KEY`
 
-© 2025 Hidden Leaf Networks LLC. All rights reserved.
+---
+
+## 🎓 License
+MIT License
+
+---
+
+## 🚀 Coming Soon
+- `.exe` packaging
+- Tray watchdog for process health
+- Mic source selector
+- Command memory timeline

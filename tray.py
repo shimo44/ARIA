@@ -8,6 +8,7 @@ import time
 
 ICON_PATH = os.path.join(os.path.dirname(__file__), "assets", "icon.jpg")
 WAKE_SCRIPT = os.path.join(os.path.dirname(__file__), "wake_listener.py")
+GUI_SCRIPT = os.path.join(os.path.dirname(__file__), "aria_gui.py")
 
 listener_process = None
 aria_icon = None
@@ -41,6 +42,10 @@ def stop_listening(icon, item):
         notify("Aria Paused", "Wake word listener has been stopped.")
         print("Aria has stopped listening.")
 
+def open_gui(icon, item):
+    subprocess.Popen([sys.executable, GUI_SCRIPT])
+    notify("Aria GUI", "Opening assistant control window...")
+
 def quit_app(icon, item):
     stop_listening(icon, item)
     icon.stop()
@@ -56,6 +61,7 @@ def create_icon():
     aria_icon.menu = Menu(
         MenuItem("Start Listening", start_listening),
         MenuItem("Stop Listening", stop_listening),
+        MenuItem("Open GUI", open_gui),
         MenuItem("Quit", quit_app)
     )
     update_tooltip("Idle")
